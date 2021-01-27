@@ -9,7 +9,7 @@ function App() {
   // const result = useRef(null);
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post('/api/duration', {"link": playlist})
+    axios.post('https://yt-playlist-duration-flask.herokuapp.com/', {"link": playlist})
     .then(response => {
       console.log(response)
       // alert(response.data)
@@ -22,7 +22,17 @@ function App() {
       ReactDOM.render(<p>Sorry. There is error. Please check the playlist link. If the link is correct then there must be an issue in the API and we are sorry about that.</p>,
       document.getElementById('duration'));
     })
-    setPlaylist("");
+    // fetch('https://yt-playlist-duration-flask.herokuapp.com/', {
+    //   method: 'post',
+    //   body: JSON.stringify({
+    //     link: playlist,
+    //   })
+    // })
+    // .then(response => ReactDOM.render(<h2>Playlist Duration: {response.data}</h2>,
+    // document.getElementById('duration')),)
+    // .catch(err => ReactDOM.render(<p>Sorry. There is error. Please check the playlist link. If the link is correct then there must be an issue in the API and we are sorry about that.</p>,
+    // document.getElementById('duration')),)
+    // setPlaylist("");
   }
 
   return (
