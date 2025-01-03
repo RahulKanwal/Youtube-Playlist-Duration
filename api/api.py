@@ -69,7 +69,7 @@ def get_playlist_duration():
 
         # for loop to calculate the total duration of all the videos
         for item in vid_response['items']:
-            duration = item['contentDetails']['duration']
+            duration = item['contentDetails'].get('duration', 'PT0H0M0S')
 
             # searching for the hours, minutes and seconds in the duration data with the help of regular expressions.
             hours = hours_pattern.search(duration)
