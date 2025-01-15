@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   const [playlist, setPlaylist] = useState( "" );
@@ -9,7 +10,7 @@ function App() {
   // const result = useRef(null);
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post('https://yt-playlist-duration-flask.herokuapp.com/', {"link": playlist})
+    axios.post('https://youtube-playlist-duration.onrender.com/api/duration', {"link": playlist})
     .then(response => {
       console.log(response)
       // alert(response.data)
@@ -39,11 +40,13 @@ function App() {
     <div className="App">
       <h1>YouTube Playlist Duration</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Enter Playlist Link:
-          <input type="text" value={playlist} onChange={e => setPlaylist(e.target.value)} />
-        </label>
-        <input type="submit" name="Calculate" />
+      <div class="form-group row">
+        <div class="col-md-12">
+        <label for="playlist link">Enter Playlist Link</label>
+          <input type="text" class="form-control" value={playlist} onChange={e => setPlaylist(e.target.value)} placeholder="https://www.youtube.com/playlist?list=playlist_id" />
+          <input type="submit" className="btn btn-primary" name="Calculate" />
+        </div>
+      </div>
       </form>
       <div id="duration">
 
